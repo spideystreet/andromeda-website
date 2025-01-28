@@ -23,13 +23,6 @@ Andromeda combine stratégie footballistique et collection de cartes dans un env
 | **Backend**  | Python (FastAPI), PostgreSQL, Redis, Celery                                  |
 | **DevOps**   | Docker, GitHub Actions, Sentry, Prometheus                                   |
 
-## 🚀 Démarrage rapide
-
-### Prérequis
-- Node.js 18+
-- Python 3.11+
-- Git
-
 📄 License
 MIT © [Andromeda]
 
