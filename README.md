@@ -23,8 +23,12 @@ Andromeda combine stratégie footballistique et collection de cartes dans un env
 | **Backend**  | Python (FastAPI), PostgreSQL, Redis, Celery                                  |
 | **DevOps**   | Docker, GitHub Actions, Sentry, Prometheus                                   |
 
-📄 License
+# 📄 License
 MIT © [Andromeda]
 
 ✨ Live Demo : [En construction] | 📝 Documentation technique
-💌 Contacts : ntyamkevin.contact@gmail.com, dhicham.pro@gmail.com, perronzacharia@gmail.com
+
+# 🔗 Contacts
+- ntyamkevin.contact@gmail.com
+- dhicham.pro@gmail.com
+- perronzacharia@gmail.com
