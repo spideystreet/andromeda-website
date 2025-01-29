@@ -26,8 +26,8 @@ const blogPosts: BlogPost[] = [
     slug: "navbar-moderne-nextjs",
     author: {
       id: 1,
-      name: "Thomas Anderson",
-      designation: "Lead Developer",
+      name: "Spidey",
+      designation: "Arraignée",
       image: "/authors/dev1.jpg"
     }
   },
@@ -39,8 +39,8 @@ const blogPosts: BlogPost[] = [
     slug: "meilleures-pratiques-react-2024",
     author: {
       id: 2,
-      name: "Marie Dubois",
-      designation: "Frontend Expert",
+      name: "Kévin Ntyam",
+      designation: "Game Dev",
       image: "/authors/dev2.jpg"
     }
   },
@@ -52,8 +52,8 @@ const blogPosts: BlogPost[] = [
     slug: "introduction-tailwind-css",
     author: {
       id: 3,
-      name: "Alex Martin",
-      designation: "UI/UX Developer",
+      name: "Super nana",
+      designation: "CRD Leaker",
       image: "/authors/dev3.jpg"
     }
   }
