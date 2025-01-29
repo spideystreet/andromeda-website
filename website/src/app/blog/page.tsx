@@ -56,6 +56,58 @@ const blogPosts: BlogPost[] = [
       designation: "CRD Leaker",
       image: "/authors/dev3.jpg"
     }
+  },
+  {
+    title: "Introduction à Tailwind CSS",
+    description: "Apprenez à utiliser Tailwind CSS pour créer des interfaces utilisateur modernes et maintenables.",
+    date: "20 Jan 2024",
+    readTime: "6 min",
+    slug: "introduction-tailwind-css",
+    author: {
+      id: 3,
+      name: "Super nana",
+      designation: "CRD Leaker",
+      image: "/authors/dev3.jpg"
+    }
+  },
+  {
+    title: "Introduction à Tailwind CSS",
+    description: "Apprenez à utiliser Tailwind CSS pour créer des interfaces utilisateur modernes et maintenables.",
+    date: "20 Jan 2024",
+    readTime: "6 min",
+    slug: "introduction-tailwind-css",
+    author: {
+      id: 3,
+      name: "Super nana",
+      designation: "CRD Leaker",
+      image: "/authors/dev3.jpg"
+    }
+  },
+  {
+    title: "Introduction à Tailwind CSS",
+    description: "Apprenez à utiliser Tailwind CSS pour créer des interfaces utilisateur modernes et maintenables.",
+    date: "20 Jan 2024",
+    readTime: "6 min",
+    slug: "introduction-tailwind-css",
+    author: {
+      id: 3,
+      name: "Super nana",
+      designation: "CRD Leaker",
+      image: "/authors/dev3.jpg"
+    }
+  },
+  {
+    title: "Introduction à Tailwind CSS",
+    description: "Apprenez à utiliser Tailwind CSS pour créer des interfaces utilisateur modernes et maintenables.",
+    date: "20 Jan 2024",
+    readTime: "6 min",
+    slug: "introduction-tailwind-css",
+    author: {
+      id: 3,
+      name: "Super nana",
+      designation: "CRD Leaker",
+      image: "/authors/dev3.jpg"
+    }
   }
 ]
 
