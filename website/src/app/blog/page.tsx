@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Timeline } from "@/components/ui/timeline"
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
 
 interface BlogPost {
   title: string
@@ -8,6 +9,12 @@ interface BlogPost {
   date: string
   readTime: string
   slug: string
+  author: {
+    id: number
+    name: string
+    designation: string
+    image: string
+  }
 }
 
 const blogPosts: BlogPost[] = [
@@ -16,26 +23,45 @@ const blogPosts: BlogPost[] = [
     description: "Découvrez comment implémenter une barre de navigation élégante et responsive avec des animations fluides.",
     date: "29 Jan 2024",
     readTime: "5 min",
-    slug: "navbar-moderne-nextjs"
+    slug: "navbar-moderne-nextjs",
+    author: {
+      id: 1,
+      name: "Thomas Anderson",
+      designation: "Lead Developer",
+      image: "/authors/dev1.jpg"
+    }
   },
   {
     title: "Les meilleures pratiques React en 2024",
     description: "Un guide complet sur les patterns et pratiques recommandés pour le développement React moderne.",
     date: "25 Jan 2024",
     readTime: "8 min",
-    slug: "meilleures-pratiques-react-2024"
+    slug: "meilleures-pratiques-react-2024",
+    author: {
+      id: 2,
+      name: "Marie Dubois",
+      designation: "Frontend Expert",
+      image: "/authors/dev2.jpg"
+    }
   },
   {
     title: "Introduction à Tailwind CSS",
     description: "Apprenez à utiliser Tailwind CSS pour créer des interfaces utilisateur modernes et maintenables.",
     date: "20 Jan 2024",
     readTime: "6 min",
-    slug: "introduction-tailwind-css"
+    slug: "introduction-tailwind-css",
+    author: {
+      id: 3,
+      name: "Alex Martin",
+      designation: "UI/UX Developer",
+      image: "/authors/dev3.jpg"
+    }
   }
 ]
 
 const timelineData = blogPosts.map(post => ({
   title: post.date,
+  author: post.author,
   content: (
     <Link
       href={`/blog/${post.slug}`}
