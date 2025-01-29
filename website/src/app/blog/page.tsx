@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { Timeline } from "@/components/ui/timeline"
 
 interface BlogPost {
   title: string
@@ -33,6 +34,29 @@ const blogPosts: BlogPost[] = [
   }
 ]
 
+const timelineData = blogPosts.map(post => ({
+  title: post.date,
+  content: (
+    <Link
+      href={`/blog/${post.slug}`}
+      className="block group"
+    >
+      <article className="p-6 bg-muted/50 rounded-lg transition-all hover:bg-muted/80">
+        <div className="flex justify-between items-start mb-2">
+          <h2 className="text-2xl font-semibold group-hover:text-primary transition-colors">
+            {post.title}
+          </h2>
+          <ArrowRight className="w-5 h-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+        </div>
+        <p className="text-muted-foreground mb-4">{post.description}</p>
+        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>{post.readTime} de lecture</span>
+        </div>
+      </article>
+    </Link>
+  )
+}))
+
 export default function BlogPage() {
   return (
     <div className="max-w-4xl mx-auto">
@@ -43,30 +67,7 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <div className="space-y-8">
-        {blogPosts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="block group"
-          >
-            <article className="p-6 bg-muted/50 rounded-lg transition-all hover:bg-muted/80">
-              <div className="flex justify-between items-start mb-2">
-                <h2 className="text-2xl font-semibold group-hover:text-primary transition-colors">
-                  {post.title}
-                </h2>
-                <ArrowRight className="w-5 h-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
-              </div>
-              <p className="text-muted-foreground mb-4">{post.description}</p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <span>{post.date}</span>
-                <span>•</span>
-                <span>{post.readTime} de lecture</span>
-              </div>
-            </article>
-          </Link>
-        ))}
-      </div>
+      <Timeline data={timelineData} />
     </div>
   )
 }
