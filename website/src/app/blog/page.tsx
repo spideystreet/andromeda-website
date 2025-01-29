@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Timeline } from "@/components/ui/timeline"
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
+import { HyperText } from "@/components/ui/hyper-text"
 
 interface BlogPost {
   title: string
@@ -138,12 +139,25 @@ const timelineData = blogPosts.map(post => ({
 export default function BlogPage() {
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="space-y-2 mb-12">
-        <h1 className="text-4xl font-bold">Blog</h1>
-        <p className="text-muted-foreground">
-          Découvrez nos derniers articles sur le développement web et les technologies modernes.
-        </p>
-      </div>
+      <section id="header" className="mb-12 pt-20 md:px-10">
+        <div className="space-y-2">
+          <HyperText 
+          text="BLOG"
+            className="text-3xl font-bold tracking-tighter sm:text-3xl xl:text-3xl/none"
+            duration={1000}
+          />
+          <HyperText 
+            text="Avancées du jeu"
+            className="text-xl tracking-tighter sm:text-xl xl:text-xl/none text-muted-foreground"
+            duration={1200}
+            framerProps={{
+              initial: { opacity: 0, y: 5 },
+              animate: { opacity: 1, y: 0 },
+              exit: { opacity: 0, y: -3 },
+          }}
+        />
+        </div>
+      </section>
 
       <Timeline data={timelineData} />
     </div>

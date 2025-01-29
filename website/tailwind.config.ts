@@ -55,7 +55,16 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+  		animation: {
+  			'grid': 'grid 20s linear infinite',
+  		},
+  		keyframes: {
+  			grid: {
+  				'0%': { transform: 'translateY(0)' },
+  				'100%': { transform: 'translateY(-50%)' },
+  			},
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
