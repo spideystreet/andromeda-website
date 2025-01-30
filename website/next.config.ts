@@ -9,10 +9,14 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.join(__dirname, 'src'),
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Ajout des alias
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        '@': path.join(process.cwd(), 'src'),
+      },
     };
     return config;
   },
