@@ -5,7 +5,7 @@ interface MousePosition {
   y: number;
 }
 
-export function useMousePositionRef(containerRef: React.RefObject<HTMLElement>) {
+export function useMousePositionRef(containerRef: React.RefObject<HTMLElement | null>) {
   const mousePosition = useRef<MousePosition>({ x: 0, y: 0 });
 
   useEffect(() => {

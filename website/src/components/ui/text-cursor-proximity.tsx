@@ -1,10 +1,9 @@
 "use client"
 
 import React, { CSSProperties, forwardRef, useRef } from "react"
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "motion/react"
+import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 import { useMousePositionRef } from "@/hooks/use-mouse-position-ref"
 
-// Helper type that makes all properties of CSSProperties accept number | string
 type CSSPropertiesWithValues = {
   [K in keyof CSSProperties]: string | number
 }
@@ -19,7 +18,7 @@ interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
   styles: Partial<{
     [K in keyof CSSPropertiesWithValues]: StyleValue<K>
   }>
-  containerRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
   radius?: number
   falloff?: "linear" | "exponential" | "gaussian"
 }
@@ -40,13 +39,24 @@ const TextCursorProximity = forwardRef<HTMLSpanElement, TextProps>(
   ) => {
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([])
     const mousePositionRef = useMousePositionRef(containerRef)
-    
-    // Create a motion value for each letter's proximity
-    const letterProximities = useRef(
-      Array(label.replace(/\s/g, "").length)
-        .fill(0)
-        .map(() => useMotionValue(0))
+    const proximityValue = useMotionValue(0)
+
+    const transformMotion = useTransform(
+      proximityValue,
+      [0, 1],
+      [styles.transform?.from ?? "scale(1)", styles.transform?.to ?? "scale(1)"]
     )
+
+    const colorMotion = useTransform(
+      proximityValue,
+      [0, 1],
+      [styles.color?.from ?? "#FFFFFF", styles.color?.to ?? "#FFFFFF"]
+    )
+
+    const transformedStyles = {
+      transform: styles.transform ? transformMotion : undefined,
+      color: styles.color ? colorMotion : undefined
+    }
 
     const calculateDistance = (
       x1: number,
@@ -75,7 +85,7 @@ const TextCursorProximity = forwardRef<HTMLSpanElement, TextProps>(
       if (!containerRef.current) return
       const containerRect = containerRef.current.getBoundingClientRect()
 
-      letterRefs.current.forEach((letterRef, index) => {
+      letterRefs.current.forEach((letterRef) => {
         if (!letterRef) return
 
         const rect = letterRef.getBoundingClientRect()
@@ -90,7 +100,7 @@ const TextCursorProximity = forwardRef<HTMLSpanElement, TextProps>(
         )
 
         const proximity = calculateFalloff(distance)
-        letterProximities.current[index].set(proximity)
+        proximityValue.set(proximity)
       })
     })
 
@@ -108,14 +118,6 @@ const TextCursorProximity = forwardRef<HTMLSpanElement, TextProps>(
           <span key={wordIndex} className="inline-block whitespace-nowrap">
             {word.split("").map((letter) => {
               const currentLetterIndex = letterIndex++
-              const proximity = letterProximities.current[currentLetterIndex]
-              
-              // Create transformed values for each style property
-              const transformedStyles = Object.entries(styles).reduce((acc, [key, value]) => {
-                acc[key] = useTransform(proximity, [0, 1], [value.from, value.to])
-                return acc
-              }, {} as Record<string, any>)
-
               return (
                 <motion.span
                   key={currentLetterIndex}

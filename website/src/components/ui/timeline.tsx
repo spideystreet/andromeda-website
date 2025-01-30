@@ -1,11 +1,7 @@
 "use client";
-import {
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import { AnimatedTooltip } from "./animated-tooltip";
 
 interface TimelineEntry {

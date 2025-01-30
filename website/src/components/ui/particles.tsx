@@ -3,6 +3,14 @@
 import { useEffect, useRef } from "react";
 import { useMousePosition } from "@/lib/hooks/use-mouse-position";
 
+interface Particle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+}
+
 interface ParticlesProps {
   className?: string;
   quantity?: number;
@@ -21,7 +29,7 @@ export function Particles({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const particles = useRef<any[]>([]);
+  const particles = useRef<Particle[]>([]);
   const animationFrame = useRef<number>(0);
 
   useEffect(() => {

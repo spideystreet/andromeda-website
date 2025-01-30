@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+
+const NAVIGATION = ["Home", "About", "Contact"];
 
 export interface NavItem {
   name: string
@@ -19,17 +21,6 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
 
   return (
     <div
@@ -82,4 +73,44 @@ export function NavBar({ items, className }: NavBarProps) {
       </div>
     </div>
   )
+}
+
+export default function TubelightNavbar() {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  return (
+    <nav className="relative flex items-center justify-center w-full h-16 px-4 text-sm font-medium bg-black border border-transparent">
+      <div className="flex items-center justify-center w-full gap-4 text-white">
+        {NAVIGATION.map((item) => (
+          <button
+            key={item}
+            className={`relative px-4 py-2 transition-colors ${
+              activeIndex === NAVIGATION.indexOf(item)
+                ? "text-white"
+                : "text-neutral-500 hover:text-neutral-200"
+            }`}
+            onClick={() => setActiveIndex(NAVIGATION.indexOf(item))}
+          >
+            <span className="relative z-10">{item}</span>
+
+            {activeIndex === NAVIGATION.indexOf(item) && (
+              <motion.span
+                layoutId="tubelight"
+                className="absolute inset-0 z-0 bg-white mix-blend-difference"
+                style={{
+                  borderRadius: 9999,
+                }}
+                transition={{
+                  type: "spring",
+                  bounce: 0.25,
+                  stiffness: 130,
+                  damping: 12,
+                }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
 }

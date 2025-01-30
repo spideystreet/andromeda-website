@@ -1,8 +1,8 @@
+"use client";
+
+import { Timeline } from "@/components/ui/timeline"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { Timeline } from "@/components/ui/timeline"
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
-import { HyperText } from "@/components/ui/hyper-text"
 
 interface BlogPost {
   title: string
@@ -138,27 +138,7 @@ const timelineData = blogPosts.map(post => ({
 
 export default function BlogPage() {
   return (
-    <div className="max-w-4xl mx-auto">
-      <section id="header" className="mb-12 pt-20 md:px-10">
-        <div className="space-y-2">
-          <HyperText 
-          text="BLOG"
-            className="text-3xl font-bold tracking-tighter sm:text-3xl xl:text-3xl/none"
-            duration={1000}
-          />
-          <HyperText 
-            text="Avancées du jeu"
-            className="text-xl tracking-tighter sm:text-xl xl:text-xl/none text-muted-foreground"
-            duration={1200}
-            framerProps={{
-              initial: { opacity: 0, y: 5 },
-              animate: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: -3 },
-          }}
-        />
-        </div>
-      </section>
-
+    <div className="container mx-auto px-4">
       <Timeline data={timelineData} />
     </div>
   )
